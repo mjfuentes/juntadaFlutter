@@ -22,7 +22,9 @@ class _GroupsPageState extends State<GroupsPage> {
             ]),
         drawer: new Drawer(),
         body: new Stack(children: <Widget>[
-          new Positioned.fill(child: new Image.asset('images/background.jpg'),),
+          new Positioned.fill(
+            child: new Image.asset('images/background.jpg'),
+          ),
           new GridView.count(
             children: _getGroups(),
             crossAxisCount: 2,
