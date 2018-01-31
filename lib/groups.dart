@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:juntada_flutter/widgets/group_item.dart';
 
 class GroupsPage extends StatefulWidget {
   GroupsPage({Key key}) : super(key: key);
@@ -22,16 +23,28 @@ class _GroupsPageState extends State<GroupsPage> {
             ]),
         drawer: new Drawer(),
         body: new Stack(children: <Widget>[
-          new Positioned.fill(
-            child: new Image.asset('images/background.jpg'),
+           new Container(
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                fit: BoxFit.fitWidth,
+                alignment: FractionalOffset.topCenter,
+                image: new AssetImage('images/background.jpg')
+              ),
+            ),
           ),
-          new GridView.count(
-            children: _getGroups(),
-            crossAxisCount: 2,
+          new Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: new GridView.count(
+              crossAxisSpacing: 5.0,
+              mainAxisSpacing: 5.0,
+              childAspectRatio: 1.1,
+              children: _getGroups(),
+              crossAxisCount: 2,
+            )
           )
         ]),
         floatingActionButton: new FloatingActionButton(
-            elevation: 0.0,
+            elevation: 5.0,
             child: new Icon(Icons.add),
             backgroundColor: new Color(0xFF00BFA5),
             onPressed: () {}));
@@ -40,38 +53,7 @@ class _GroupsPageState extends State<GroupsPage> {
   _getGroups() {
     List<Widget> groups = [];
     for (int i = 1; i <= 15; i++) {
-      groups.add(new Container(
-          color: Colors.white,
-          margin: const EdgeInsets.all(5.0),
-          child: new GestureDetector(
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new AspectRatio(
-                  aspectRatio: 1.3,
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                        image: new DecorationImage(
-                      fit: BoxFit.fitWidth,
-                      alignment: FractionalOffset.topCenter,
-                      image: new NetworkImage(
-                          'https://i.stack.imgur.com/lkd0a.png'),
-                    )),
-                  ),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.all(10.0),
-                  child: new Text(
-                    'Sample group ' + i.toString(),
-                    textAlign: TextAlign.start,
-                  ),
-                )
-              ],
-            ),
-            onTap: () {
-              print('row tapped');
-            },
-          )));
+      groups.add(new GroupItem());
     }
     return groups;
   }

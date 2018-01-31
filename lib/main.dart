@@ -22,7 +22,11 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: new GroupPage()
+      home: new GroupsPage(),
+      routes: <String, WidgetBuilder> {
+        '/groupsPage': (BuildContext context) => new GroupsPage(),
+        '/groupPage': (BuildContext context) => new GroupPage()
+      }
     );
   }
 }
